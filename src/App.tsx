@@ -1,11 +1,18 @@
+/*
+	External Dependencies
+ */
 import React from 'react';
-import logo from './logo.svg';
+
+/*
+	Internal Dependencies
+ */
 import './App.css';
+import Table from './containers/Table/Table'
 
 function App() {
   return (
     <div className="App">
-      
+      <Table />
     </div>
   );
 }
