@@ -9,3 +9,49 @@
 	padding: 0 15px;
 	margin: 0 auto;
 }
+
+.TableTitles {
+	padding: 15px;
+	border-bottom: 2px solid #ccc;
+}
+
+.TableTitles ul {
+	display: flex;
+	list-style-type: none;
+}
+
+.TableTitles li {
+	width: 20%;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.TableBody {
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.ListHolder {
+	padding: 15px;
+}
+
+.Item {
+	display: flex;
+}
+
+.Item p {
+	width: 20%;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+.Item + .Item {
+	padding-top: 5px;
+	border-top: 1px solid #ccc;
+	margin-top: 5px;
+}
+
+.DeleteButton {
+	
+}

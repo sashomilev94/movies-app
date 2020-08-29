@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
  */
 import Shell from '../Shell/Shell';
 import Title from '../../components/Title/Title';
+import Items from '../../components/Items/Items';
 import * as actionTypes from '../../store/actions';
 import { Movie } from '../../store/reducer';
 
@@ -21,14 +22,26 @@ interface PropsInterface {
 }
 
 class Table extends Component <PropsInterface, StateInterface> {
-  render() {
-  	  console.log(this.props.items)
-	  
+  render() {	  
 	  return (
 	    <div className="Table" >
 	    	<Shell>
 	    		<div className="TableHeading">
 	    			<Title title="Movies" />
+	    		</div>
+
+	    		<div className="TableBody">
+	    			<div className="TableTitles">
+	    				<ul>
+	    					<li>Movie Name</li>
+	    					<li>Director</li>
+	    					<li>Distributor</li>
+	    					<li>Rating</li>
+	    					<li>Votes</li>
+	    				</ul>
+	    			</div>
+	    			
+	    			<Items />
 	    		</div>
 	    	</Shell>
 	    </div>
@@ -48,9 +61,7 @@ const mapDispatchToProps = (dispatch: any) => {
 		onAddItem: (name: string) => {
 			dispatch({
 				type: actionTypes.ADD_MOVIE,
-				payload: {
-					name
-				}
+				name
 			})
 		}
 	}

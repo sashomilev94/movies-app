@@ -3,11 +3,11 @@ import movieData from '../data/movies.json';
 
 export interface Movie {
 	id: number;
-	title: string;
+	title: string|number;
 	director: string;
 	distributor: string;
-	rating: number;
-	votes: number;
+	imdb_rating: number;
+	imdb_votes: number;
 }
 
 const initialState: Movie[] = movieData;
