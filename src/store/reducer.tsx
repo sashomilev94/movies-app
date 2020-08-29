@@ -12,6 +12,7 @@ export interface Movie {
 
 const initialState: Movie[] = movieData;
 
+
 const reducer = (state = initialState, action: any) => {
 	switch(action.type) {
 		case actionTypes.ADD_MOVIE : {
@@ -25,9 +26,7 @@ const reducer = (state = initialState, action: any) => {
 			}
 		}
 		case actionTypes.DELETE_MOVIE: {
-			return {
-				...state,
-			}
+			return state.filter(movie => movie.id !== action.id)
 		}
 		default: return state
 	}

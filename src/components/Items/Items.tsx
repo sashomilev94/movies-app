@@ -23,11 +23,12 @@ interface StateInterface {
  */
 interface PropsInterface {
 	items: Movie[];
+	onDeleteItem: Function;
 }
 
 class Items extends Component <PropsInterface, StateInterface> {
   render() {
-  	  const { items } = this.props;
+  	  const { items, onDeleteItem } = this.props;
 
 	  return (
 	    <Fragment>
@@ -43,7 +44,8 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    				director={item.director} 
 	    				distributor={item.distributor} 
 	    				rating={item.imdb_rating} 
-	    				votes={item.imdb_votes} />
+	    				votes={item.imdb_votes}
+	    				deleted={() => onDeleteItem(item.id)} />
 	    			))
 	    		}
 	    	</div>
@@ -61,7 +63,7 @@ const mapStateToProps = (state: StateInterface) => {
 
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		onAddItem: (id: number) => {
+		onDeleteItem: (id: number) => {
 			dispatch({
 				type: actionTypes.DELETE_MOVIE,
 				id
