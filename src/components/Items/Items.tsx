@@ -41,7 +41,11 @@ class Items extends Component <PropsInterface, StateInterface> {
   	  
   	  let computedItems;
   	  
-  	  // to be refactored
+  	  /**
+  	   * Check sort type
+  	   * @param  {rating number} sortedBy [rating]
+  	   * @return {rating number}          [Asc/Desc]
+  	   */
   	  if (sortedBy === '') {
   	  	computedItems = items;
   	  } else if(sortedBy === 'asc') {
@@ -54,6 +58,11 @@ class Items extends Component <PropsInterface, StateInterface> {
   	  	});
   	  }
 
+  	  /**
+  	   * Check filter enabled
+  	   * @param  {item} filterEnabled [sort by rating]
+  	   * @return {rating over FilterRating} [FilterRating comes from reducer-filters]
+  	   */
   	  if (filterEnabled) {
   	  	computedItems = computedItems.filter((item:Movie) => {
   	  		return item.imdb_rating > filterRating;

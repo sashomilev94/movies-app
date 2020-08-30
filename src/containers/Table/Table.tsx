@@ -13,6 +13,9 @@ import Items from '../../components/Items/Items';
 import * as actionTypes from '../../store/actions';
 import { Movie } from '../../store/reducer';
 
+/*
+	Defining State Interface
+ */
 interface StateInterface {
 	movieData: Movie[];
 	filters: {
@@ -22,6 +25,9 @@ interface StateInterface {
 	};
 }
 
+/*
+	Defining Props Interface
+ */
 interface PropsInterface {
 	items: Movie[];
 	onSortItem: Function;
@@ -31,6 +37,9 @@ interface PropsInterface {
 }
 
 class Table extends Component <PropsInterface, StateInterface> {
+  /*
+  	  Change Sort Type when sort button click is fired
+   */
   sortButtonClickHandler = (event:MouseEvent) => {
   	let sortBy:string;
 
@@ -43,6 +52,9 @@ class Table extends Component <PropsInterface, StateInterface> {
   	this.props.onSortItem(sortBy);
   }
 
+  /*
+  	  Fire Filter function when sort button click is fired
+   */
   filterButtonClickHandler = (event:MouseEvent) => {
   	this.props.onFilterItems();
   }
@@ -58,7 +70,7 @@ class Table extends Component <PropsInterface, StateInterface> {
 	    		</div>
 
     			<button onClick={this.sortButtonClickHandler}>Sort by rating</button>
-    			
+
     			<button onClick={this.filterButtonClickHandler}>Show rating over {filterRating}</button>
 	    		
 	    		<div className="TableBody">	
