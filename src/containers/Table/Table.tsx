@@ -68,14 +68,17 @@ class Table extends Component <PropsInterface, StateInterface> {
 	    	<Shell>
 	    		<div className="TableHeading">
 	    			<Title title="Movies" />
+
+	    			<NavLink 
+	    				className="Btn"
+	    				to="/add-movie">Add Movie</NavLink>
 	    		</div>
 
-    			<button onClick={this.sortButtonClickHandler}>Sort by rating</button>
+    			<div className="TableActions">
+    				<button className="Btn" onClick={this.sortButtonClickHandler}>Sort by rating</button>
 
-    			<button onClick={this.filterButtonClickHandler}>Show rating over {filterRating}</button>
-
-    			<NavLink 
-    				to="/add-movie">Add Movie</NavLink>
+    				<button className="Btn" onClick={this.filterButtonClickHandler}>Show rating over {filterRating}</button>
+    			</div>
 	    		
 	    		<div className="TableBody">	
 	    			<div className="TableTitles">

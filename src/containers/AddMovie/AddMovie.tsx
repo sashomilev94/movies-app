@@ -60,22 +60,40 @@ class AddMovie extends Component <PropsInterface, StateInterface> {
 			<Fragment>
 				<div className="NewMovieForm">
 					<Shell>
-						<h1>Add movie</h1>
-						
-						<div>
-							<form onSubmit={this.onFormSubmitHandler}>
-								<input placeholder="name" type="text" name="title" required pattern="^[0-9a-zA-Z]+$" onChange={this.onChangeHandler} />
+						<div className="NewMovieFormInner">
+							<h1>Add movie</h1>
+							
+							<div>
+								<form className="Form" onSubmit={this.onFormSubmitHandler}>
+									<div className="FormControls">
+										<input placeholder="Film Title" type="text" name="title" required onChange={this.onChangeHandler} />
+										
+									</div>
 
-								<input placeholder="director" type="text" name="director" pattern="[a-zA-Z]*" onChange={this.onChangeHandler} />
+									<div className="FormControls">
+										<input placeholder="Director" type="text" name="director" required pattern="[a-zA-Z]*" onChange={this.onChangeHandler} />
+										
+									</div>
 
-								<input placeholder="distributor" type="text" name="distributor" pattern="[a-zA-Z]*" onChange={this.onChangeHandler} />
+									<div className="FormControls">
+										<input placeholder="Distributor" required type="text" name="distributor" pattern="[a-zA-Z]*" onChange={this.onChangeHandler} />
+										
+									</div>
 
-								<input placeholder="text" pattern="\d+((\.)\d+)?" type="text" name="imdb_rating" onChange={this.onChangeHandler} />
+									<div className="FormControls">
+										<input placeholder="Rating" required pattern="\d+((\.)\d+)?" type="text" name="imdb_rating" onChange={this.onChangeHandler} />
+										
+									</div>
 
-								<input placeholder="votes" pattern="[0-9]*" type="text" name="imdb_votes" onChange={this.onChangeHandler} />
+									<div className="FormControls">
+										<input placeholder="Votes" required pattern="[0-9]*" type="text" name="imdb_votes" onChange={this.onChangeHandler} />
+									</div>
 
-								<button>Add movie</button>
-							</form>				
+									<div className="FormActions">
+										<button className="Btn">Add movie</button>
+									</div>
+								</form>				
+							</div>
 						</div>
 					</Shell>
 				</div>
