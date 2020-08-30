@@ -32,7 +32,7 @@ interface PropsInterface {
 
 class Table extends Component <PropsInterface, StateInterface> {
   sortButtonClickHandler = (event:MouseEvent) => {
-  	let sortBy;
+  	let sortBy:string;
 
   	if (this.props.sortedBy === '' || this.props.sortedBy === 'desc') {
   		sortBy = 'asc'
@@ -58,8 +58,7 @@ class Table extends Component <PropsInterface, StateInterface> {
 	    		</div>
 
     			<button onClick={this.sortButtonClickHandler}>Sort by rating</button>
-    			<br />
-    			<br />
+    			
     			<button onClick={this.filterButtonClickHandler}>Show rating over {filterRating}</button>
 	    		
 	    		<div className="TableBody">	

@@ -45,17 +45,17 @@ class Items extends Component <PropsInterface, StateInterface> {
   	  if (sortedBy === '') {
   	  	computedItems = items;
   	  } else if(sortedBy === 'asc') {
-  	  	computedItems = items.concat().sort((a:any, b:any) => {
+  	  	computedItems = items.concat().sort((a:Movie, b:Movie) => {
   	  		return a.imdb_rating - b.imdb_rating;
-  	  	})
+  	  	});
   	  } else {
-  	  	computedItems = items.concat().sort((a:any, b:any) => {
+  	  	computedItems = items.concat().sort((a:Movie, b:Movie) => {
   	  		return b.imdb_rating - a.imdb_rating;
-  	  	})
+  	  	});
   	  }
 
   	  if (filterEnabled) {
-  	  	computedItems = computedItems.filter(item => {
+  	  	computedItems = computedItems.filter((item:Movie) => {
   	  		return item.imdb_rating > filterRating;
   	  	});
   	  }
