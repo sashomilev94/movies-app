@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
  */
 import { Movie } from '../../store/reducer';
 import Item from './Item/Item';
+import Pagination from '../Pagination/Pagination';
 import * as actionTypes from '../../store/actions';
 
 /*
@@ -18,9 +19,10 @@ interface StateInterface {
 	movieData: Movie[];
 	filters: {
 		sort: string,
-		page: number,
 		filterEnabled: boolean,
-		filterRating: number
+		filterRating: number,
+		page: number,
+		itemsPerPage: number
 	};
 }
 
@@ -33,21 +35,30 @@ interface PropsInterface {
 	sortedBy: string;
 	filterEnabled: boolean;
 	filterRating: number;
+	page: number;
+	visibleItems: number;
 }
 
 class Items extends Component <PropsInterface, StateInterface> {
   render() {
-  	  const { items, onDeleteItem, sortedBy, filterEnabled, filterRating } = this.props;
-  	  
+  	  const { items, onDeleteItem, sortedBy, filterEnabled, filterRating, page, visibleItems } = this.props;
   	  let computedItems;
-  	  
+
+
+  	  const indexOfLastPosts = page * visibleItems;
+  	  const indexOfFirstPost = indexOfLastPosts - visibleItems;
+
+  	  /*
+  	  		ДА СЕ НАПРАВИ ДА РАБОТИ ПРАВИЛНО СЪС СТРАНИЦИТЕ КОГАТО СЕ ФИЛТРИРА, СОРТИРА
+  	   */
+
   	  /**
   	   * Check sort type
   	   * @param  {rating number} sortedBy [rating]
   	   * @return {rating number}          [Asc/Desc]
   	   */
   	  if (sortedBy === '') {
-  	  	computedItems = items;
+		computedItems = items.concat().slice(indexOfFirstPost, indexOfLastPosts)
   	  } else if(sortedBy === 'asc') {
   	  	computedItems = items.concat().sort((a:Movie, b:Movie) => {
   	  		return a.imdb_rating - b.imdb_rating;
@@ -88,6 +99,8 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    			))
 	    		}
 	    	</div>
+
+	    	<Pagination postsPerPage={visibleItems} totalPosts={items.length} />
 	    </Fragment>
 	  );
   }
@@ -97,6 +110,8 @@ const mapStateToProps = (state: StateInterface) => {
 	return {
 		items: state.movieData,
 		sortedBy: state.filters.sort,
+		page: state.filters.page,
+		visibleItems: state.filters.itemsPerPage,
 		filterEnabled: state.filters.filterEnabled,
 		filterRating: state.filters.filterRating
 	}

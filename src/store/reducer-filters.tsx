@@ -3,6 +3,7 @@ import * as actionTypes from './actions';
 export interface Filters {
 	sort: string;
 	page: number;
+	itemsPerPage: number;
 	filterEnabled: boolean;
 	filterRating: number;
 }
@@ -10,6 +11,7 @@ export interface Filters {
 const initialState = {
 	sort: '',
 	page: 1,
+	itemsPerPage: 10,
 	filterEnabled: false,
 	filterRating: 8
 }
