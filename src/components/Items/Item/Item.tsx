@@ -8,8 +8,8 @@ type ItemProps = {
   director?: string,
   distributor?: string,
   rating?: number,
-  votes?: number
-  deleted: (e: MouseEvent<HTMLButtonElement>) => void;
+  votes?: number,
+  deleted: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
 const Item: FunctionComponent<ItemProps> = ({title, director, distributor, rating, votes, deleted, children}) => {

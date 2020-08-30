@@ -16,6 +16,12 @@ import * as actionTypes from '../../store/actions';
  */
 interface StateInterface {
 	movieData: Movie[];
+	filters: {
+		sort: string,
+		page: number,
+		filterEnabled: boolean,
+		filterRating: number
+	};
 }
 
 /*
@@ -24,11 +30,35 @@ interface StateInterface {
 interface PropsInterface {
 	items: Movie[];
 	onDeleteItem: Function;
+	sortedBy: string;
+	filterEnabled: boolean;
+	filterRating: number;
 }
 
 class Items extends Component <PropsInterface, StateInterface> {
   render() {
-  	  const { items, onDeleteItem } = this.props;
+  	  const { items, onDeleteItem, sortedBy, filterEnabled, filterRating } = this.props;
+  	  
+  	  let computedItems;
+  	  
+  	  // to be refactored
+  	  if (sortedBy === '') {
+  	  	computedItems = items;
+  	  } else if(sortedBy === 'asc') {
+  	  	computedItems = items.concat().sort((a:any, b:any) => {
+  	  		return a.imdb_rating - b.imdb_rating;
+  	  	})
+  	  } else {
+  	  	computedItems = items.concat().sort((a:any, b:any) => {
+  	  		return b.imdb_rating - a.imdb_rating;
+  	  	})
+  	  }
+
+  	  if (filterEnabled) {
+  	  	computedItems = computedItems.filter(item => {
+  	  		return item.imdb_rating > filterRating;
+  	  	});
+  	  }
 
 	  return (
 	    <Fragment>
@@ -37,7 +67,7 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    			/**
 	    			 * Map over array items and return single array object
 	    			 */
-	    			items.map(item => (
+	    			computedItems.map(item => (
 	    			<Item 
 	    				key={item.id} 
 	    				title={item.title} 
@@ -54,10 +84,12 @@ class Items extends Component <PropsInterface, StateInterface> {
   }
 }
 
-
 const mapStateToProps = (state: StateInterface) => {
 	return {
-		items: state.movieData
+		items: state.movieData,
+		sortedBy: state.filters.sort,
+		filterEnabled: state.filters.filterEnabled,
+		filterRating: state.filters.filterRating
 	}
 }
 

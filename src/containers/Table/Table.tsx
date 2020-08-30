@@ -1,7 +1,7 @@
 /*
 	External Dependencies
  */
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import { connect } from 'react-redux';
 
 /*
@@ -15,14 +15,34 @@ import { Movie } from '../../store/reducer';
 
 interface StateInterface {
 	movieData: Movie[];
+	filters: {
+		sort: string,
+		page: number,
+		filterRating: number
+	};
 }
 
 interface PropsInterface {
 	items: Movie[];
+	onSortItem: Function;
+	onFilterItems: Function;
+	sortedBy: string;
+	filterRating: number;
 }
 
 class Table extends Component <PropsInterface, StateInterface> {
-  render() {	  
+  // to be refactored
+  sortButtonClickHandler = (event:MouseEvent) => {
+  	const sortBy = this.props.sortedBy === '' ? 'asc' : 'desc';
+
+  	this.props.onSortItem(sortBy);
+  }
+
+  filterButtonClickHandler = (event:MouseEvent) => {
+  	this.props.onFilterItems();
+  }
+
+  render() {
 	  return (
 	    <div className="Table" >
 	    	<Shell>
@@ -30,7 +50,12 @@ class Table extends Component <PropsInterface, StateInterface> {
 	    			<Title title="Movies" />
 	    		</div>
 
-	    		<div className="TableBody">
+    			<button onClick={this.sortButtonClickHandler}>Sort by rating</button>
+    			<br />
+    			<br />
+    			<button onClick={this.filterButtonClickHandler}>Show rating over {this.props.filterRating}</button>
+	    		
+	    		<div className="TableBody">	
 	    			<div className="TableTitles">
 	    				<ul>
 	    					<li>Movie Name</li>
@@ -52,16 +77,23 @@ class Table extends Component <PropsInterface, StateInterface> {
 
 const mapStateToProps = (state: StateInterface) => {
 	return {
-		items: state.movieData
+		items: state.movieData,
+		sortedBy: state.filters.sort,
+		filterRating: state.filters.filterRating
 	}
 }
 
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		onAddItem: (name: string) => {
+		onSortItem: (sortType:string) => {
 			dispatch({
-				type: actionTypes.ADD_MOVIE,
-				name
+				type: actionTypes.SORT_MOVIES,
+				sortType
+			})
+		},
+		onFilterItems: () => {
+			dispatch({
+				type: actionTypes.FILTER_MOVIES
 			})
 		}
 	}

@@ -6,8 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './store/reducer';
+import reducerFilters from './store/reducer-filters';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(combineReducers({ movieData: reducer }))
+const store = createStore(combineReducers({
+	movieData: reducer,
+	filters: reducerFilters,
+}), composeWithDevTools());
 
 ReactDOM.render(
   <React.StrictMode>
