@@ -3,6 +3,7 @@
  */
 import React, { Component, MouseEvent } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 /*
 	Internal Dependencies
@@ -72,6 +73,9 @@ class Table extends Component <PropsInterface, StateInterface> {
     			<button onClick={this.sortButtonClickHandler}>Sort by rating</button>
 
     			<button onClick={this.filterButtonClickHandler}>Show rating over {filterRating}</button>
+
+    			<NavLink 
+    				to="/add-movie">Add Movie</NavLink>
 	    		
 	    		<div className="TableBody">	
 	    			<div className="TableTitles">

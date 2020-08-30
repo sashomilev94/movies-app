@@ -16,9 +16,16 @@ const initialState: Movie[] = movieData;
 const reducer = (state = initialState, action: any) => {
 	switch(action.type) {
 		case actionTypes.ADD_MOVIE : {
-			return {
-				...state,
+			const newMovie = {
+				id: Math.random() * 40,
+				title: action.payload.title,
+				director: action.payload.director,
+				distributor: action.payload.distributor,
+				imdb_rating: action.payload.imdb_rating,
+				imdb_votes: action.payload.imdb_votes
 			}
+
+			return state.concat(newMovie)
 		}
 		case actionTypes.EDIT_MOVIE : {
 			return {
