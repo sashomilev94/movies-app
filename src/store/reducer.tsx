@@ -17,7 +17,7 @@ const reducer = (state = initialState, action: any) => {
 	switch(action.type) {
 		case actionTypes.ADD_MOVIE : {
 			const newMovie = {
-				id: Math.random() * 40,
+				id: state.length + 1,
 				title: action.payload.title,
 				director: action.payload.director,
 				distributor: action.payload.distributor,

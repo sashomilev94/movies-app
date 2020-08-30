@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { Component} from 'react'
 
-const EditMovie = () => {
-	return (
-		<div>
-			
-		</div>
-	)
+class EditMovie extends Component {
+	render() {
+		return (
+			<div>
+				<h1>Edit Movie</h1>
+
+				<input type="text" />
+			</div>
+		)
+	}
 }
 
 export default EditMovie

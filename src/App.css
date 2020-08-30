@@ -70,7 +70,7 @@
 .Item {
 	position: relative;
 	display: flex;
-	padding: 10px 0;
+	padding: 10px 70px 10px 0;
 	cursor: pointer;
 }
 
@@ -84,7 +84,8 @@
 	border-top: 1px solid #ccc;
 }
 
-.DeleteButton {
+.DeleteButton,
+.EditButton {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -104,7 +105,12 @@
 	cursor: pointer;
 }
 
-.Item.Active .DeleteButton {
+.EditButton {
+	right: 40px;
+}
+
+.Item.Active .DeleteButton,
+.Item.Active .EditButton {
 	opacity: 1;
 	visibility: visible;
 }
