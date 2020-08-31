@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 /*
 	Internal Dependencies
  */
+import Title from '../../components/Title/Title';
 import Shell from '../Shell/Shell';
 import * as actionTypes from '../../store/actions';
 
@@ -61,7 +62,7 @@ class AddMovie extends Component <PropsInterface, StateInterface> {
 				<div className="NewMovieForm">
 					<Shell>
 						<div className="NewMovieFormInner">
-							<h1>Add movie</h1>
+							<Title title="Add Movie" />
 							
 							<div>
 								<form className="Form" onSubmit={this.onFormSubmitHandler}>

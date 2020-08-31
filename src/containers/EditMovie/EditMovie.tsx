@@ -1,6 +1,13 @@
+/*
+	External Dependencies
+ */
 import React, { Component, Fragment, ChangeEvent, SyntheticEvent } from 'react'
 import { connect } from 'react-redux';
 
+/*
+	Interal Dependencies
+ */
+import Title from '../../components/Title/Title';
 import Shell from '../Shell/Shell';
 import { Movie } from '../../store/reducer';
 import * as actionTypes from '../../store/actions';
@@ -82,7 +89,7 @@ class EditMovie extends Component <PropsInterface, StateInterface> {
 				<div className="NewMovieForm">
 					<Shell>
 						<div className="NewMovieFormInner">
-							<h1>Edit movie</h1>
+							<Title title="Edit Movie" />
 							
 							<div>
 								<form className="Form" onSubmit={this.onFormSubmitHandler}>

@@ -1,4 +1,7 @@
-import React, { FunctionComponent } from 'react'
+/*
+	External Dependencies
+ */
+import React, { FunctionComponent, MouseEvent } from 'react'
 
 const Pagination:FunctionComponent<{postsPerPage: number, totalPosts: number}> = ({postsPerPage, totalPosts}) => {
 	
@@ -8,12 +11,16 @@ const Pagination:FunctionComponent<{postsPerPage: number, totalPosts: number}> =
 		pageNumbers.push(i);
 	}
 
+	const handleClick = (event: MouseEvent) => {
+		event.preventDefault();
+	}
+
 	return (
 		<nav>
 			<ul className="Pagination">
 				{pageNumbers.map(page => (
 					<li key={page} className="PageItem">
-						<a href="#" className="PageLink">{page}</a>
+						<a onClick={handleClick} data-id={page} href="#" className="PageLink">{page}</a>
 					</li>
 
 				))}

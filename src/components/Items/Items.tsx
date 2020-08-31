@@ -45,12 +45,8 @@ class Items extends Component <PropsInterface, StateInterface> {
 
   	  let computedItems;
 
-  	  // const indexOfLastPosts = page * visibleItems;
-  	  // const indexOfFirstPost = indexOfLastPosts - visibleItems;
-
-  	  /*
-  	  		ДА СЕ НАПРАВИ ДА РАБОТИ ПРАВИЛНО СЪС СТРАНИЦИТЕ КОГАТО СЕ ФИЛТРИРА, СОРТИРА
-  	   */
+  	  const indexOfLastPosts = page * visibleItems;
+  	  const indexOfFirstPost = indexOfLastPosts - visibleItems;
 
   	  /**
   	   * Check sort type
@@ -58,7 +54,7 @@ class Items extends Component <PropsInterface, StateInterface> {
   	   * @return {rating number}          [Asc/Desc]
   	   */
   	  if (sortedBy === '') {
-		computedItems = items;
+		computedItems = items.slice(indexOfFirstPost, indexOfLastPosts);
   	  } else if(sortedBy === 'asc') {
   	  	computedItems = items.concat().sort((a:Movie, b:Movie) => {
   	  		return a.imdb_rating - b.imdb_rating;
@@ -100,6 +96,8 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    			))
 	    		}
 	    	</div>
+
+	    	<Pagination  postsPerPage={visibleItems} totalPosts={items.length} />
 	    </Fragment>
 	  );
   }

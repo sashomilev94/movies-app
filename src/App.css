@@ -20,6 +20,29 @@
 	transition: all .4s;
 }
 
+.Pagination {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
+	list-style-type: none;
+}
+
+.Pagination li + li {
+	margin-left: 20px;
+}
+
+.Pagination a {
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 500;
+	color: #000;
+	transition: .4s;
+}
+
+.Pagination a:hover {
+	color: #33dcff;
+}
+
 .Btn:hover {
 	border-color: #33DCFF;
 	background-color: transparent;
