@@ -65,7 +65,7 @@
 }
 
 .TableTitles {
-	padding: 15px;
+	padding: 15px 85px 15px 15px;
 	border-bottom: 2px solid #ccc;
 }
 
@@ -170,4 +170,62 @@
 	border-radius: 0;
 	font-size: 16px;
 	font-weight: 500;
+}
+
+@media(max-width: 1024px){
+	.TableTitles li {
+		font-size: 14px;
+	}
+
+	.Item p {
+		font-size: 12px;
+	}
+}
+
+
+@media(max-width: 767px){
+	.TableTitles {
+		padding-right: 20px;
+		padding-left: 5px;
+	}
+
+	.Shell {
+		padding: 0 5px;
+	}
+
+	.TableTitles li {
+		font-size: 12px;
+	}
+
+	.Item {
+		padding-right: 15px;
+	}
+
+	.ListHolder {
+		padding: 15px 5px;
+	}
+
+	.EditButton,
+	.DeleteButton {
+		width: 20px;
+		height: 20px;
+	}
+
+	.EditButton svg,
+	.DeleteButton svg {
+		width: 10px;
+		height: 10px;
+	}
+
+	.EditButton {
+		right: 23px;
+	}
+
+	.Item p {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		font-size: 10px;
+		padding-right: 5px;
+	}	
 }

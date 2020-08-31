@@ -72,12 +72,12 @@ class AddMovie extends Component <PropsInterface, StateInterface> {
 									</div>
 
 									<div className="FormControls">
-										<input placeholder="Director" type="text" name="director" required pattern="[a-zA-Z]*" onChange={this.onChangeHandler} />
+										<input placeholder="Director" type="text" name="director" required onChange={this.onChangeHandler} />
 										
 									</div>
 
 									<div className="FormControls">
-										<input placeholder="Distributor" required type="text" name="distributor" pattern="[a-zA-Z]*" onChange={this.onChangeHandler} />
+										<input placeholder="Distributor" required type="text" name="distributor" onChange={this.onChangeHandler} />
 										
 									</div>
 
