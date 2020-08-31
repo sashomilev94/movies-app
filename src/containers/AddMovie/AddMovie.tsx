@@ -15,10 +15,10 @@ import * as actionTypes from '../../store/actions';
  */
 interface StateInterface {
 	title: string|number;
-	director: string,
-	distributor: string,
-	imdb_rating: number,
-	imdb_votes: number
+	director: string;
+	distributor: string;
+	imdb_rating: number;
+	imdb_votes: number;
 }
 
 /*

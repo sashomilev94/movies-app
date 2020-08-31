@@ -18,7 +18,7 @@ const App = () => {
       <Switch>
       	<Route path="/movies" component={Table} />
       	<Route path="/add-movie" component={AddMovie} />
-      	<Route path="/edit-movie" component={EditMovie} />
+      	<Route path="/edit-movie/:id" component={EditMovie} />
       	<Redirect from="/" to="/movies" />
       </Switch>
     </div>

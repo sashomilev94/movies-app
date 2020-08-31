@@ -28,9 +28,11 @@ const reducer = (state = initialState, action: any) => {
 			return state.concat(newMovie)
 		}
 		case actionTypes.EDIT_MOVIE : {
-			return {
-				...state,
-			}
+			const index = state.findIndex(item => item.id === action.payload.id)
+
+			state[index] = action.payload;
+
+			return state;
 		}
 		case actionTypes.DELETE_MOVIE: {
 			return state.filter(movie => movie.id !== action.id)

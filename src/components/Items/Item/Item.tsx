@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 	Defining Prop Types
  */
 type ItemProps = {
+  dataID: number,
   title: string|number,
   director: string,
   distributor: string,
@@ -13,22 +14,18 @@ type ItemProps = {
   deleted: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
-const Item: FunctionComponent<ItemProps> = ({title, director, distributor, rating, votes, deleted, children}) => {
+const Item: FunctionComponent<ItemProps> = ({title, director, distributor, rating, votes, deleted, children, dataID}) => {
 
 	let names = "Item";
 	const [isActive, setActive] = useState<boolean>(false);
 
 	/**
-	 * Set Active(Delete) State To Item
+	 * Set Active(Delete/Edit) State To Item
 	 * @return {boolean} [true/false]
 	 */
 	const toggleActivation = () => {
 		return setActive(!isActive);
 	};
-
-	const enterEditState = () => {
-
-	}
 
 	/*
 		If active add class Active to the element
@@ -47,7 +44,7 @@ const Item: FunctionComponent<ItemProps> = ({title, director, distributor, ratin
 				<p>{votes}</p>
 
 				<NavLink 
-					to="/edit-movie" 
+					to={`edit-movie/${dataID}`} 
 					className="EditButton">
 					<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 494.936 494.936">
 					  <path d="M389.844 182.85c-6.743 0-12.21 5.467-12.21 12.21v222.968c0 23.562-19.174 42.735-42.736 42.735H67.157c-23.562 0-42.736-19.174-42.736-42.735V150.285c0-23.562 19.174-42.735 42.736-42.735h267.741c6.743 0 12.21-5.467 12.21-12.21s-5.467-12.21-12.21-12.21H67.157C30.126 83.13 0 113.255 0 150.285v267.743c0 37.029 30.126 67.155 67.157 67.155h267.741c37.03 0 67.156-30.126 67.156-67.155V195.061c0-6.743-5.467-12.211-12.21-12.211z"/>

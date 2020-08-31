@@ -42,11 +42,11 @@ interface PropsInterface {
 class Items extends Component <PropsInterface, StateInterface> {
   render() {
   	  const { items, onDeleteItem, sortedBy, filterEnabled, filterRating, page, visibleItems } = this.props;
+
   	  let computedItems;
 
-
-  	  const indexOfLastPosts = page * visibleItems;
-  	  const indexOfFirstPost = indexOfLastPosts - visibleItems;
+  	  // const indexOfLastPosts = page * visibleItems;
+  	  // const indexOfFirstPost = indexOfLastPosts - visibleItems;
 
   	  /*
   	  		ДА СЕ НАПРАВИ ДА РАБОТИ ПРАВИЛНО СЪС СТРАНИЦИТЕ КОГАТО СЕ ФИЛТРИРА, СОРТИРА
@@ -58,7 +58,7 @@ class Items extends Component <PropsInterface, StateInterface> {
   	   * @return {rating number}          [Asc/Desc]
   	   */
   	  if (sortedBy === '') {
-		computedItems = items.concat().slice(indexOfFirstPost, indexOfLastPosts)
+		computedItems = items;
   	  } else if(sortedBy === 'asc') {
   	  	computedItems = items.concat().sort((a:Movie, b:Movie) => {
   	  		return a.imdb_rating - b.imdb_rating;
@@ -95,12 +95,11 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    				distributor={item.distributor} 
 	    				rating={item.imdb_rating} 
 	    				votes={item.imdb_votes}
+	    				dataID={item.id}
 	    				deleted={() => onDeleteItem(item.id)} />
 	    			))
 	    		}
 	    	</div>
-
-	    	<Pagination postsPerPage={visibleItems} totalPosts={items.length} />
 	    </Fragment>
 	  );
   }
