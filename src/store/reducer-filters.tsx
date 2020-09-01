@@ -22,7 +22,8 @@ const reducerFilters = (state = initialState, action: any) => {
 		case actionTypes.SORT_MOVIES : {
 			return {
 				...state,
-				sort: action.sortType
+				sort: action.sortType,
+				page: 1
 			}
 		}
 		case actionTypes.CHANGE_PAGE : {
@@ -34,7 +35,8 @@ const reducerFilters = (state = initialState, action: any) => {
 		case actionTypes.FILTER_MOVIES : {
 			return {
 				...state,
-				filterEnabled: !state.filterEnabled
+				filterEnabled: !state.filterEnabled,
+				page: 1
 			}
 		}
 		default: return state

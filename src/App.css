@@ -41,7 +41,8 @@
 	transition: .4s;
 }
 
-.Pagination button:hover {
+.Pagination button:hover,
+.Pagination button.active {
 	color: #33dcff;
 }
 
