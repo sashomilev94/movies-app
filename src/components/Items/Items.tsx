@@ -42,11 +42,10 @@ interface PropsInterface {
 class Items extends Component <PropsInterface, StateInterface> {
   render() {
   	  const { items, onDeleteItem, sortedBy, filterEnabled, filterRating, page, visibleItems } = this.props;
-
-  	  let computedItems = items;
-
   	  const indexOfLastPosts = page * visibleItems;
   	  const indexOfFirstPost = indexOfLastPosts - visibleItems;
+
+	  let computedItems = items;
 
   	  /**
   	   * Check sort type
@@ -76,8 +75,10 @@ class Items extends Component <PropsInterface, StateInterface> {
   	  	});
   	  }
 
-  	  const allComputedItems = computedItems.length
+  	  /* Checking computed items length before initializing the pagination */
+  	  const allComputedItems = computedItems.length;
 
+  	  /* Showing number of items per page */
   	  computedItems = computedItems.slice(indexOfFirstPost, indexOfLastPosts);
 
 	  return (
@@ -101,7 +102,7 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    		}
 	    	</div>
 
-	    	<Pagination  postsPerPage={visibleItems} totalPosts={allComputedItems} />
+	    	<Pagination postsPerPage={visibleItems} totalPosts={allComputedItems} />
 	    </Fragment>
 	  );
   }

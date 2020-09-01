@@ -25,6 +25,12 @@ const reducerFilters = (state = initialState, action: any) => {
 				sort: action.sortType
 			}
 		}
+		case actionTypes.CHANGE_PAGE : {
+			return {
+				...state,
+				page: action.page
+			}
+		}
 		case actionTypes.FILTER_MOVIES : {
 			return {
 				...state,

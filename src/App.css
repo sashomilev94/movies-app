@@ -31,7 +31,9 @@
 	margin-left: 20px;
 }
 
-.Pagination a {
+.Pagination button {
+	border: 0;
+	background-color: transparent;
 	text-decoration: none;
 	font-size: 16px;
 	font-weight: 500;
@@ -39,7 +41,7 @@
 	transition: .4s;
 }
 
-.Pagination a:hover {
+.Pagination button:hover {
 	color: #33dcff;
 }
 

@@ -2,17 +2,34 @@
 	External Dependencies
  */
 import React, { FunctionComponent, MouseEvent } from 'react'
+import { connect } from 'react-redux';
 
-const Pagination:FunctionComponent<{postsPerPage: number, totalPosts: number}> = ({postsPerPage, totalPosts}) => {
+import * as actionTypes from '../../store/actions';
+
+type ItemProps = {
+	postsPerPage: number,
+	totalPosts: number,
+	onChangePage: Function,
+	currentPage: number
+}
+
+interface StateInterface {
+	filters: {
+		page: number
+	};
+}
+
+
+const Pagination:FunctionComponent<ItemProps> = ({postsPerPage, totalPosts, onChangePage, currentPage}) => {
 	
+	const changePageHandler = (page: number) => {
+		onChangePage(page);
+	}
+
 	const pageNumbers = [];
 
 	for (let i = 1; i <= Math.ceil(totalPosts /  postsPerPage) ; i++) {
 		pageNumbers.push(i);
-	}
-
-	const handleClick = (event: MouseEvent) => {
-		event.preventDefault();
 	}
 
 	return (
@@ -20,7 +37,7 @@ const Pagination:FunctionComponent<{postsPerPage: number, totalPosts: number}> =
 			<ul className="Pagination">
 				{pageNumbers.map(page => (
 					<li key={page} className="PageItem">
-						<a onClick={handleClick} data-id={page} href="#" className="PageLink">{page}</a>
+						<button className={currentPage === page ? 'active' : ''} onClick={() => changePageHandler(page)}>{page}</button>
 					</li>
 
 				))}
@@ -29,4 +46,21 @@ const Pagination:FunctionComponent<{postsPerPage: number, totalPosts: number}> =
 	)
 }
 
-export default Pagination;
+const mapStateToProps = (state: StateInterface) => {
+	return {
+		currentPage: state.filters.page
+	}
+}
+
+const mapDispatchToProps = (dispatch: Function) => {
+	return {
+		onChangePage: (page: number) => {
+			dispatch({
+				type: actionTypes.CHANGE_PAGE,
+				page
+			})
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
