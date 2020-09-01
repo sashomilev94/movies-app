@@ -136,7 +136,7 @@ const mapStateToProps = (state: StoreInterface, ownProps: any) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onEditItems: (id: number, title:string|number, director:string,distributor:string, imdb_rating:number, imdb_votes:number) => {
 			dispatch({

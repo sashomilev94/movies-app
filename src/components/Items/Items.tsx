@@ -43,7 +43,7 @@ class Items extends Component <PropsInterface, StateInterface> {
   render() {
   	  const { items, onDeleteItem, sortedBy, filterEnabled, filterRating, page, visibleItems } = this.props;
 
-  	  let computedItems;
+  	  let computedItems = items;
 
   	  const indexOfLastPosts = page * visibleItems;
   	  const indexOfFirstPost = indexOfLastPosts - visibleItems;
@@ -54,7 +54,7 @@ class Items extends Component <PropsInterface, StateInterface> {
   	   * @return {rating number}          [Asc/Desc]
   	   */
   	  if (sortedBy === '') {
-		computedItems = items.slice(indexOfFirstPost, indexOfLastPosts);
+		computedItems = items;
   	  } else if(sortedBy === 'asc') {
   	  	computedItems = items.concat().sort((a:Movie, b:Movie) => {
   	  		return a.imdb_rating - b.imdb_rating;
@@ -75,6 +75,10 @@ class Items extends Component <PropsInterface, StateInterface> {
   	  		return item.imdb_rating > filterRating;
   	  	});
   	  }
+
+  	  const allComputedItems = computedItems.length
+
+  	  computedItems = computedItems.slice(indexOfFirstPost, indexOfLastPosts);
 
 	  return (
 	    <Fragment>
@@ -97,7 +101,7 @@ class Items extends Component <PropsInterface, StateInterface> {
 	    		}
 	    	</div>
 
-	    	<Pagination  postsPerPage={visibleItems} totalPosts={items.length} />
+	    	<Pagination  postsPerPage={visibleItems} totalPosts={allComputedItems} />
 	    </Fragment>
 	  );
   }
@@ -114,7 +118,7 @@ const mapStateToProps = (state: StateInterface) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onDeleteItem: (id: number) => {
 			dispatch({

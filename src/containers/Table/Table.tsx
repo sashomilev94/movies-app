@@ -108,7 +108,7 @@ const mapStateToProps = (state: StateInterface) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onSortItem: (sortType:string) => {
 			dispatch({

@@ -103,7 +103,7 @@ class AddMovie extends Component <PropsInterface, StateInterface> {
 	}
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onAddItems: (title:string|number, director:string,distributor:string,imdb_rating:number,imdb_votes:number) => {
 			dispatch({
